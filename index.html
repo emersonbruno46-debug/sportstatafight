@@ -77,10 +77,10 @@
        DESIGN SYSTEM v2
     ======================================== */
     :root {
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #101010;
-      --bg-card: #151515;
-      --bg-card-hover: #1a1a1a;
+      --bg-primary: #000000;
+      --bg-secondary: #080808;
+      --bg-card: #101010;
+      --bg-card-hover: #151515;
       --orange: #FF6A00;
       --orange-dark: #E05E00;
       --orange-glow: rgba(255, 106, 0, 0.25);
@@ -155,8 +155,8 @@
     ======================================== */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 18px 36px; border-radius: var(--radius); font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.05em;
-      font-size: 1.15rem; font-weight: 600; cursor: pointer; border: none;
+      padding: 14px 28px; border-radius: var(--radius); font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.05em;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none;
       transition: var(--transition); text-decoration: none; white-space: nowrap;
     }
     .btn-primary {
@@ -225,17 +225,15 @@
       min-height: 85vh;
       display: flex;
       align-items: center;
-      justify-content: center;
       padding: 140px 0 80px;
       overflow: hidden;
-      text-align: center;
     }
     .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.95) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.95) 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -245,6 +243,7 @@
       filter: blur(120px);
       opacity: 0.9;
       z-index: 0;
+      display: none;
     }
     .mesh-blob {
       position: absolute;
@@ -300,19 +299,22 @@
     
     .hero-grid { position: absolute; inset: 0; z-index: 1; background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 40%, transparent 100%); }
 
-    .hero-container-center { position: relative; z-index: 3; display: flex; justify-content: center; align-items: center; width: 100%; }
-    .hero-content-center { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-    .hero-content-center h1 { font-size: clamp(2rem, 5.5vw, 3.5rem); font-weight: 700; font-family: var(--font-heading); text-transform: uppercase; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 22px; text-wrap: balance; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
-    .hero-content-center .hero-sub { font-size: clamp(0.95rem, 1.6vw, 1.08rem); color: var(--gray); line-height: 1.7; margin-bottom: 36px; text-wrap: pretty; max-width: 720px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
-    
-    .hero-content-center .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 22px; }
-    .hero-content-center .hero-micro { font-size: 0.78rem; font-weight: 700; color: var(--gray-dark); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 32px; opacity: 0.95; }
+    .hero-container-split { position: relative; z-index: 3; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; width: 100%; text-align: left; }
+    .hero-content-left { display: flex; flex-direction: column; align-items: flex-start; }
+    .hero-image-right { display: flex; justify-content: center; align-items: center; }
+    .hero-image-right img { width: 100%; max-width: 480px; height: auto; object-fit: contain; }
 
-    .hero-content-center .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 26px; }
-    .hero-content-center .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 100px; font-size: 0.78rem; font-weight: 600; color: var(--white-muted); transition: var(--transition); }
-    .hero-content-center .hero-badge:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 106, 0, 0.25); color: var(--white); transform: translateY(-1px); }
-    .hero-content-center .hero-badge svg { width: 13px; height: 13px; color: var(--orange); flex-shrink: 0; transition: transform 0.3s var(--ease-overshoot); }
-    .hero-content-center .hero-badge:hover svg { transform: scale(1.18); color: var(--yellow); }
+    .hero-content-left h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); font-weight: 700; font-family: var(--font-heading); text-transform: uppercase; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 22px; text-wrap: balance; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
+    .hero-content-left .hero-sub { font-size: clamp(0.95rem, 1.6vw, 1.08rem); color: var(--gray); line-height: 1.7; margin-bottom: 36px; text-wrap: pretty; max-width: 720px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); }
+    
+    .hero-content-left .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 22px; }
+    .hero-content-left .hero-micro { font-size: 0.78rem; font-weight: 700; color: var(--gray-dark); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 32px; opacity: 0.95; }
+
+    .hero-content-left .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start; margin-bottom: 26px; }
+    .hero-content-left .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 100px; font-size: 0.78rem; font-weight: 600; color: var(--white-muted); transition: var(--transition); }
+    .hero-content-left .hero-badge:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 106, 0, 0.25); color: var(--white); transform: translateY(-1px); }
+    .hero-content-left .hero-badge svg { width: 13px; height: 13px; color: var(--orange); flex-shrink: 0; transition: transform 0.3s var(--ease-overshoot); }
+    .hero-content-left .hero-badge:hover svg { transform: scale(1.18); color: var(--yellow); }
 
     /* Hero button enhancements */
     .hero-buttons .btn-primary {
@@ -425,9 +427,21 @@
     @media(max-width:768px) {
       section { padding: 48px 0; }
       .hero { padding: 110px 0 44px; min-height: auto; }
-      .hero-content-center h1 { font-size: 2.25rem; line-height: 1.25; }
+      .hero-container-split { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .hero-content-left { align-items: center; }
+      .hero-content-left h1 { font-size: 2.6rem; line-height: 1.15; }
+      .hero-content-left .hero-buttons { justify-content: center; }
+      .hero-content-left .hero-badges { justify-content: center; }
+      .hero-image-right img { max-width: 320px; }
       .section-title { font-size: 1.6rem; margin-bottom: 16px; }
       .section-sub { margin-bottom: 28px; }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.88rem;
+        white-space: normal;
+        text-align: center;
+      }
 
       .mod-grid {
         grid-template-columns: 1fr;
@@ -452,9 +466,20 @@
         padding: 10px 8px;
         font-size: 0.72rem;
         letter-spacing: 0.05em;
+        flex-shrink: 0;
       }
       .plans-tabs {
         margin-bottom: 24px;
+      }
+      .timeline-selector-container {
+        overflow-x: auto;
+        padding-bottom: 12px;
+      }
+      .timeline-steps {
+        width: 680px;
+      }
+      .timeline-step {
+        width: 130px;
       }
       .timeline-step .step-year {
         font-size: 0.85rem;
@@ -462,11 +487,23 @@
       .timeline-step .step-desc {
         font-size: 0.62rem;
       }
+      .timeline-line {
+        width: 550px;
+        left: 65px;
+      }
       .timeline-epoch-title {
         font-size: 1.15rem;
       }
       .timeline-stat-num {
         font-size: 1.6rem;
+      }
+      .timeline-card-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .timeline-card {
+        padding: 24px;
+        transform: none !important;
       }
     }
     @media(max-width:480px) {
@@ -487,7 +524,7 @@
     .plans-tabs { display: flex; gap: 4px; background: var(--bg-card); border-radius: var(--radius); padding: 4px; margin-bottom: 32px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .plans-tabs::-webkit-scrollbar { display: none; }
     .tab-btn {
-      flex: 1; min-width: 120px; padding: 12px 16px; border: none; background: transparent;
+      flex: 1 0 auto; min-width: 120px; padding: 12px 16px; border: none; background: transparent;
       color: var(--gray); font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.05em; font-size: 1rem; font-weight: 600;
       cursor: pointer; border-radius: var(--radius-sm); transition: var(--transition); white-space: nowrap;
     }
@@ -945,27 +982,7 @@
       margin-top: 4px;
     }
 
-    @media(max-width: 768px) {
-      .timeline-selector-container {
-        overflow-x: auto;
-        padding-bottom: 12px;
-      }
-      .timeline-steps {
-        width: 600px;
-      }
-      .timeline-line {
-        width: 520px;
-        left: 40px;
-      }
-      .timeline-card-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .timeline-card {
-        padding: 24px;
-        transform: none !important;
-      }
-    }
+
 
     @media(prefers-reduced-motion:reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -1006,8 +1023,8 @@
       </div>
       <div class="hero-grid"></div>
     </div>
-    <div class="container hero-container-center">
-      <div class="hero-content-center">
+    <div class="container hero-container-split">
+      <div class="hero-content-left">
         <div class="hero-badges stagger">
           <div class="hero-badge">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M9 11.24a4 4 0 1 1-2 0V16l1-1 1 1v-4.76zM8 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
@@ -1036,6 +1053,9 @@
         </div>
         
         <p class="hero-micro anim-up" style="transition-delay:.25s">Musculação • Muay Thai • Jiu-Jitsu • Aeróbica • Combos</p>
+      </div>
+      <div class="hero-image-right anim-scale" style="transition-delay:.18s">
+        <img src="assets/hero-tata.png" alt="Tatá Fight" loading="eager">
       </div>
     </div>
   </section>
@@ -1679,7 +1699,16 @@
       
       const activeStepBtn = steps[index];
       if (activeStepBtn && window.innerWidth <= 768) {
-        activeStepBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const container = document.querySelector('.timeline-selector-container');
+        if (container) {
+          const btnOffsetLeft = activeStepBtn.offsetLeft;
+          const btnWidth = activeStepBtn.offsetWidth;
+          const containerWidth = container.offsetWidth;
+          container.scrollTo({
+            left: btnOffsetLeft - (containerWidth / 2) + (btnWidth / 2),
+            behavior: 'smooth'
+          });
+        }
       }
 
       infoPanel.classList.add('fade-out');
