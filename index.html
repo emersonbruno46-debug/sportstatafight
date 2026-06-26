@@ -461,6 +461,22 @@
         height: 105%;
         right: 0;
         bottom: 0;
+        animation: float-mobile 6s ease-in-out infinite;
+      }
+      .mod-card:nth-child(1) .mod-card-img { animation-delay: 0s; }
+      .mod-card:nth-child(2) .mod-card-img { animation-delay: 1.5s; }
+      .mod-card:nth-child(3) .mod-card-img { animation-delay: 3.0s; }
+      .mod-card:nth-child(4) .mod-card-img { animation-delay: 4.5s; }
+
+      @keyframes float-mobile {
+        0%, 100% {
+          transform: scale(1) translate(0, 0) rotate(0deg);
+          opacity: 0.88;
+        }
+        50% {
+          transform: scale(1.1) translate(-4px, -4px) rotate(2deg);
+          opacity: 1;
+        }
       }
       .tab-btn {
         min-width: 90px;
@@ -472,40 +488,6 @@
       .plans-tabs {
         margin-bottom: 24px;
       }
-      .timeline-selector-container {
-        overflow-x: auto;
-        padding-bottom: 12px;
-      }
-      .timeline-steps {
-        width: 680px;
-      }
-      .timeline-step {
-        width: 130px;
-      }
-      .timeline-step .step-year {
-        font-size: 0.85rem;
-      }
-      .timeline-step .step-desc {
-        font-size: 0.62rem;
-      }
-      .timeline-line {
-        width: 550px;
-        left: 65px;
-      }
-      .timeline-epoch-title {
-        font-size: 1.15rem;
-      }
-      .timeline-stat-num {
-        font-size: 1.6rem;
-      }
-      .timeline-card-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .timeline-card {
-        padding: 24px;
-        transform: none !important;
-      }
     }
     @media(max-width:480px) {
       .mod-card-info {
@@ -515,24 +497,6 @@
         max-width: 90px;
         right: 0;
         bottom: 0;
-      }
-      .timeline-stats-panel {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      .timeline-stat-card {
-        padding: 12px 16px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 12px;
-        transform: none !important;
-      }
-      .timeline-stat-num {
-        font-size: 1.8rem;
-      }
-      .timeline-stat-label {
-        margin-top: 0;
       }
     }
 
@@ -1105,7 +1069,63 @@
       margin-top: 4px;
     }
 
+    @media(max-width:768px) {
+      .timeline-selector-container {
+        overflow-x: auto;
+        padding-bottom: 12px;
+      }
+      .timeline-steps {
+        width: 680px;
+      }
+      .timeline-step {
+        width: 130px;
+      }
+      .timeline-step .step-year {
+        font-size: 0.85rem;
+      }
+      .timeline-step .step-desc {
+        font-size: 0.62rem;
+      }
+      .timeline-line {
+        width: 550px;
+        left: 65px;
+      }
+      .timeline-epoch-title {
+        font-size: 1.15rem;
+      }
+      .timeline-stat-num {
+        font-size: 1.6rem;
+      }
+      .timeline-card-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .timeline-card {
+        padding: 24px;
+        transform: none !important;
+      }
+    }
 
+    @media(max-width:480px) {
+      .timeline-stats-panel {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .timeline-stat-card {
+        padding: 12px 16px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        transform: none !important;
+      }
+      .timeline-stat-num {
+        font-size: 1.8rem;
+      }
+      .timeline-stat-label {
+        margin-top: 0;
+      }
+    }
 
     @media(prefers-reduced-motion:reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -1719,7 +1739,13 @@
     const animEls = document.querySelectorAll('.anim-up,.anim-left,.anim-right,.anim-scale,.stagger');
     if (!reduced) {
       const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+          } else {
+            e.target.classList.remove('visible');
+          }
+        });
       }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
       animEls.forEach(el => obs.observe(el));
     } else {
