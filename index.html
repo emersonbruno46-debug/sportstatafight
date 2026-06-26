@@ -1737,12 +1737,11 @@
     if (!reduced) {
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
+          const rect = e.target.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
             e.target.classList.add('visible');
           } else {
-            if (e.boundingClientRect.top > 0) {
-              e.target.classList.remove('visible');
-            }
+            e.target.classList.remove('visible');
           }
         });
       }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
